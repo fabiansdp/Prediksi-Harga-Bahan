@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Harga Bahan Baku</title>
+</head>
+<body>
+    <main>
+        <h1>Masukkan Parameter Untuk Prediksi</h1>
+        <form id="form">
+            <div class="select-model">
+                <label for="model">Pilih Model Prediksi:</label>
+                <select name="model" id="model">
+                    <option value="decision_tree">Decision Tree</option>
+                    <option value="linear_regression">Linear Regression</option>
+                    <option value="random_forest">Random Forest</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Masukkan Bulan dan Tahun</label>
+            </div>
+            <div>
+                <label for="">Pilih Market:</label>
+                <select name="market" id="market">
+                
+                </select>
+            </div>
+            <div>
+                <label for="">Pilih Kategori:</label>
+                <select name="kategori" id="kategori">
+                    <option value="">Cereals and Tubers</option>
+                    <option value="">Meat, Fish, and Eggs</option>
+                    <option value="">Milk and Diary</option>
+                    <option value="">Misc Food Category</option>
+                    <option value="">Non-Food</option>
+                    <option value="">Oil and Fats</option>
+                    <option value="">Vegetables and fruits</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Pilih Komoditas:</label>
+                <select name="komoditas" id="komoditas">
+                    
+                </select>
+            </div>
+            <div>
+                <label for="">Pilih Unit:</label>
+                <select name="unit" id="unit">
+                    <option value="">Kilogram</option>
+                    <option value="">Gram</option>
+                    <option value="">Liter</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Pilih Price Type:</label>
+                <select name="pricetype" id="pricetype">
+                    <option value="">Actual</option>
+                    <option value="">Aggregate</option>
+                </select>
+            </div>
+            <input type="submit">
+        </form>
+    </main>
+</body>
+<script>
+    form = document.getElementById("form");
+
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append('model', document.getElementById("model").value)
+
+        fetch("/predict", {
+            method: 'POST',
+            body: data
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
+</script>
+</html>
