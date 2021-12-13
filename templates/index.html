@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/index.css') }}">
     <title>Prediksi Harga Bahan Baku</title>
 </head>
 <body>
-    <main>
+    <header>
         <h1>Prediksi Bahan Baku</h1>
+    </header>
+    <main>
         <form id="form">
-            <h2>Masukkan parameter</h2>
-            <div class="select-model">
+            <div class="form-input">
                 <label for="model">Pilih Model Prediksi:</label>
                 <select name="model" id="model" required>
                     <option value="decision_tree">Decision Tree</option>
@@ -19,12 +21,12 @@
                     <option value="random_forest">Random Forest</option>
                 </select>
             </div>
-            <div>
-                <label for="">Masukkan Bulan dan Tahun (YYYY-MM)</label>
+            <div class="form-input">
+                <label for="monthyear">Masukkan Bulan dan Tahun (YYYY-MM)</label>
                 <input type="month" id="monthyear" required>
             </div>
-            <div>
-                <label for="">Pilih Kategori:</label>
+            <div class="form-input">
+                <label for="kategori">Pilih Kategori:</label>
                 <select name="kategori" id="kategori" required>
                     <option value="cereals">Cereals and Tubers</option>
                     <option value="meat">Meat, Fish, and Eggs</option>
@@ -35,8 +37,8 @@
                     <option value="veggies">Vegetables and fruits</option>
                 </select>
             </div>
-            <div>
-                <label for="">Pilih Komoditas:</label>
+            <div class="form-input">
+                <label for="komoditas">Pilih Komoditas:</label>
                 <select name="komoditas" id="komoditas" required>
                     <option value="chili">Cabe</option>
                     <option value="eggs">Telur</option>
@@ -52,24 +54,24 @@
                     <option value="vegetable-oil">Minyak Goreng</option>
                 </select>
             </div>
-            <div>
-                <label for="">Pilih Unit:</label>
+            <div class="form-input">
+                <label for="unit">Pilih Unit:</label>
                 <select name="unit" id="unit" required>
                     <option value="kg">Kilogram</option>
                     <option value="g">Gram</option>
                     <option value="l">Liter</option>
                 </select>
             </div>
-            <div>
-                <label for="">Pilih Price Type:</label>
+            <div class="form-input">
+                <label for="pricetype">Pilih Price Type:</label>
                 <select name="pricetype" id="pricetype" required>
                     <option value="actual">Actual</option>
                     <option value="aggregate">Aggregate</option>
                 </select>
             </div>
             <input type="submit">
+            <div id="price-container"></div>
         </form>
-        <div id="price-container"></div>
     </main>
 </body>
 <script>
