@@ -8,76 +8,96 @@
 </head>
 <body>
     <main>
-        <h1>Masukkan Parameter Untuk Prediksi</h1>
+        <h1>Prediksi Bahan Baku</h1>
         <form id="form">
+            <h2>Masukkan parameter</h2>
             <div class="select-model">
                 <label for="model">Pilih Model Prediksi:</label>
-                <select name="model" id="model">
+                <select name="model" id="model" required>
                     <option value="decision_tree">Decision Tree</option>
                     <option value="linear_regression">Linear Regression</option>
                     <option value="random_forest">Random Forest</option>
                 </select>
             </div>
             <div>
-                <label for="">Masukkan Bulan dan Tahun</label>
-            </div>
-            <div>
-                <label for="">Pilih Market:</label>
-                <select name="market" id="market">
-                
-                </select>
+                <label for="">Masukkan Bulan dan Tahun (YYYY-MM)</label>
+                <input type="month" id="monthyear" required>
             </div>
             <div>
                 <label for="">Pilih Kategori:</label>
-                <select name="kategori" id="kategori">
-                    <option value="">Cereals and Tubers</option>
-                    <option value="">Meat, Fish, and Eggs</option>
-                    <option value="">Milk and Diary</option>
-                    <option value="">Misc Food Category</option>
-                    <option value="">Non-Food</option>
-                    <option value="">Oil and Fats</option>
-                    <option value="">Vegetables and fruits</option>
+                <select name="kategori" id="kategori" required>
+                    <option value="cereals">Cereals and Tubers</option>
+                    <option value="meat">Meat, Fish, and Eggs</option>
+                    <option value="milk">Milk and Dairy</option>
+                    <option value="misc">Misc Food Category</option>
+                    <option value="non-food">Non-Food</option>
+                    <option value="oils">Oil and Fats</option>
+                    <option value="veggies">Vegetables and fruits</option>
                 </select>
             </div>
             <div>
                 <label for="">Pilih Komoditas:</label>
-                <select name="komoditas" id="komoditas">
-                    
+                <select name="komoditas" id="komoditas" required>
+                    <option value="chili">Cabe</option>
+                    <option value="eggs">Telur</option>
+                    <option value="garlic">Bawang Putih</option>
+                    <option value="shallot">Bawang Merah</option>
+                    <option value="milk">Susu</option>
+                    <option value="chicken">Daging Ayam</option>
+                    <option value="beef">Daging Sapi</option>
+                    <option value="rice">Nasi</option>
+                    <option value="sugar">Gula</option>
+                    <option value="wheat">Gandum</option>
+                    <option value="kerosene">Minyak Tanah</option>
+                    <option value="vegetable-oil">Minyak Goreng</option>
                 </select>
             </div>
             <div>
                 <label for="">Pilih Unit:</label>
-                <select name="unit" id="unit">
-                    <option value="">Kilogram</option>
-                    <option value="">Gram</option>
-                    <option value="">Liter</option>
+                <select name="unit" id="unit" required>
+                    <option value="kg">Kilogram</option>
+                    <option value="g">Gram</option>
+                    <option value="l">Liter</option>
                 </select>
             </div>
             <div>
                 <label for="">Pilih Price Type:</label>
-                <select name="pricetype" id="pricetype">
-                    <option value="">Actual</option>
-                    <option value="">Aggregate</option>
+                <select name="pricetype" id="pricetype" required>
+                    <option value="actual">Actual</option>
+                    <option value="aggregate">Aggregate</option>
                 </select>
             </div>
             <input type="submit">
         </form>
+        <div id="price-container"></div>
     </main>
 </body>
 <script>
     form = document.getElementById("form");
+    priceDiv = document.getElementById("price-container");
 
     form.onsubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
+        const monthyear = document.getElementById("monthyear").value
+        const monthyearArr = monthyear.split("-");
         data.append('model', document.getElementById("model").value)
-
+        data.append('month', monthyearArr[1]);
+        data.append('year', monthyearArr[0]);
+        data.append('kategori', document.getElementById("kategori").value);
+        data.append('komoditas', document.getElementById("komoditas").value);
+        data.append('unit', document.getElementById("unit").value);
+        data.append('pricetype', document.getElementById("pricetype").value);
+        
         fetch("/predict", {
             method: 'POST',
             body: data
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            priceDiv.innerHTML = `<p>Price: ${data.price}</p>`;
+        })
     }
 </script>
 </html>
