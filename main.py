@@ -76,13 +76,6 @@ def pricetypeArr(pricetype):
 
     return retval
 
-def rupiah_format(angka, with_prefix=False, desimal=2):
-    locale.setlocale(locale.LC_NUMERIC, 'IND')
-    rupiah = locale.format("%.*f", (desimal, angka), True)
-    if with_prefix:
-        return "Rp. {}".format(rupiah)
-    return rupiah
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -104,5 +97,5 @@ def predict():
         pricePrediction = model.predict(predictQuery)
 
         return {    
-            "price": rupiah_format(pricePrediction[0], True)
+            "price": "Rp" + str(round(pricePrediction[0], 2))
         }
