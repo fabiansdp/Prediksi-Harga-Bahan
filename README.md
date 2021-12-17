@@ -8,7 +8,7 @@
 ### Deskripsi Permasalahan
 --- 
 
-Permasalahan yang ingin diselesaikan oleh model ini berkaitan dengan proses procurement yang terjadi pada perusahaan seperti misalnya Super Indo. Terkadang terjadi fluktuasi harga secara tiba-tiba pada bahan pokok yang dipasok sehingga diperlukan sebuah solusi untuk dapat memprediksi harga sehingga proses procurement dapat direncanakan dan kenaikan harga secara tiba-tiba dapat diantisipasi.
+Permasalahan yang ingin diselesaikan oleh model ini berkaitan dengan proses procurement yang terjadi pada perusahaan seperti misalnya Super Indo. Salah satu permasalahan pada proses procurement adalah terjadinya fluktuasi harga secara tiba-tiba pada bahan pokok yang dipasok sehingga cost yang dikeluarkan lebih banyak. Oleh karena itu diperlukan sebuah solusi yang dapat memprediksi harga sehingga proses procurement dapat direncanakan dan kenaikan harga secara tiba-tiba dapat diantisipasi.
 
 ### Solusi
 ---
@@ -29,18 +29,18 @@ Proses yang dilakukan untuk tugas ini meliputi:
 Dengan adanya model yang dapat memprediksi harga, diharapkan permasalahan yang dihadapi dapat diselesaikan.
 
 
-### Cara Menggunakan Web
+### Cara Akses dan Menggunakan Web
 ---
 1. Membuka https://prediksi-bahan-baku.herokuapp.com/
 2. Mengisi input field yang disediakan dengan input yang sesuai
 3. Menekan tombol submit
 
-### Test Case yang Dapat Digunakan
+### Test Case/Data yang Dapat Digunakan
 ---
+Salah satu test case yang dapat digunakan untuk menjalankan program adalah sebagai berikut:
 1. Memilih model prediksi
 2. Memasukkan bulan dan tahun sebagai "Juli 2021"
-3. Pilih kategori "Vegetables and fruits"
-4. Pilih komoditas "Cabe"
-5. Pilih unit "Kilogram"
-6. Pilih price type "Actual"
-7. Tekan tombol submit
+3. Pilih komoditas "Cabe"
+4. Pilih unit "Kilogram"
+5. Pilih price type "Actual"
+6. Tekan tombol submit
