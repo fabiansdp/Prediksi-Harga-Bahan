@@ -26,18 +26,6 @@
                 <input type="month" id="monthyear" required>
             </div>
             <div class="form-input">
-                <label for="kategori">Pilih Kategori:</label>
-                <select name="kategori" id="kategori" required>
-                    <option value="cereals">Cereals and Tubers</option>
-                    <option value="meat">Meat, Fish, and Eggs</option>
-                    <option value="milk">Milk and Dairy</option>
-                    <option value="misc">Misc Food Category</option>
-                    <option value="non-food">Non-Food</option>
-                    <option value="oils">Oil and Fats</option>
-                    <option value="veggies">Vegetables and fruits</option>
-                </select>
-            </div>
-            <div class="form-input">
                 <label for="komoditas">Pilih Komoditas:</label>
                 <select name="komoditas" id="komoditas" required>
                     <option value="chili">Cabe</option>
@@ -86,7 +74,6 @@
         data.append('model', document.getElementById("model").value)
         data.append('month', monthyearArr[1]);
         data.append('year', monthyearArr[0]);
-        data.append('kategori', document.getElementById("kategori").value);
         data.append('komoditas', document.getElementById("komoditas").value);
         data.append('unit', document.getElementById("unit").value);
         data.append('pricetype', document.getElementById("pricetype").value);

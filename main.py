@@ -3,15 +3,27 @@ import pickle
 import locale
 
 app = Flask(__name__)
+# "cereals": 0,
+# "meat": 1,
+# "milk": 2,
+# "misc": 3,
+# "non-food": 4,
+# "oils": 5,
+# "veggies": 6,
 
 kategoriDict = {
-    "cereals": 0,
-    "meat": 1,
+    "chili": 6,
+    "eggs": 1,
+    "kerosene": 4,
+    "garlic": 3,
+    "beef": 1,
+    "chicken": 1,
     "milk": 2,
-    "misc": 3,
-    "non-food": 4,
-    "oils": 5,
-    "veggies": 6
+    "vegetable-oil": 5,
+    "shallot": 6,
+    "rice": 1,
+    "sugar": 3,
+    "wheat": 3
 }
 
 komoditasDict = {
@@ -48,10 +60,10 @@ def load_model(model_name):
 def monthYear(month, year):
     return [int(month), int(year)]
 
-def kategoriArr(kategori):
+def kategoriArr(komoditas):
     retval = [0,0,0,0,0,0,0]
-    if (kategori in kategoriDict):
-        retval[kategoriDict[kategori]] = 1
+    if (komoditas in kategoriDict):
+        retval[kategoriDict[komoditas]] = 1
 
     return retval
 
@@ -86,13 +98,12 @@ def predict():
         model_name = request.form['model']
         month = request.form['month']
         year = request.form['year']
-        kategori = request.form['kategori']
         komoditas = request.form['komoditas']
         unit = request.form['unit']
         pricetype = request.form['pricetype']
         model = load_model(model_name)
 
-        predictQuery = [monthYear(month, year) + kategoriArr(kategori) + komoditasArr(komoditas) + unitArr(unit) + pricetypeArr(pricetype)]
+        predictQuery = [monthYear(month, year) + kategoriArr(komoditas) + komoditasArr(komoditas) + unitArr(unit) + pricetypeArr(pricetype)]
         
         pricePrediction = model.predict(predictQuery)
 
